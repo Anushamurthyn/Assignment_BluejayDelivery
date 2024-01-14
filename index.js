@@ -78,6 +78,7 @@ fs.readFile('E://Assignment_Bluejay//Assignment_Timecard.xlsx', (err, data) => {
     }, 2000); // 2000 milliseconds delay
 
     setTimeout(() => {
+        console.log('Number of emplyess who have worked more than 14 hours in a single shift:', longShiftsResults.length);
         console.log("\nEmployees who have worked for more than 14 hours in a single shift:");
         printResults(longShiftsResults);
     }, 3000); // 3000 milliseconds delay
@@ -87,6 +88,7 @@ fs.readFile('E://Assignment_Bluejay//Assignment_Timecard.xlsx', (err, data) => {
 function analyzeConsecutiveDays(employeeShifts) {
     const results = Object.keys(employeeShifts).filter(employee => hasWorkedConsecutiveDays(employeeShifts[employee], 7));
     return results.length > 0 ? results : ['No employees worked for 7 consecutive days.'];
+   
 }
 
 // Analyze for short gaps between shifts
@@ -99,6 +101,7 @@ function analyzeShortGaps(employeeShifts) {
 function analyzeLongShifts(employeeShifts) {
     const results = Object.keys(employeeShifts).filter(employee => hasLongShift(employeeShifts[employee], 14));
     return results.length > 0 ? results : ['No employees have worked for more than 14 hours in a single shift.'];
+    
 }
 
 // Print results
